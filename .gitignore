@@ -1,0 +1,9 @@
+/venv
+.DS_Store
+backend/db.sqlite3
+backend/secret.py
+*.log
+*.pot
+*.pyc
+__pycache__/
+.idea
