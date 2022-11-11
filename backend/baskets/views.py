@@ -11,3 +11,7 @@ def basket(request):
 def orders(request):
     context = {'title': 'By Beloved - оформление заказа'}
     return render(request, 'baskets/checkout_order.html', context)
+
+
+def basket_add(request, product_id):
+    pass

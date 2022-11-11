@@ -7,3 +7,5 @@ class Basket(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.product
