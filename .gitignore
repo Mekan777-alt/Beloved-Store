@@ -7,3 +7,4 @@ backend/secret.py
 *.pyc
 __pycache__/
 .idea
+media
