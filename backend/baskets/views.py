@@ -4,8 +4,16 @@ from products.models import Product
 
 
 def orders(request):
+    total_sum = 0
+    total_quantity = 0
+    baskets = Basket.objects.all()
+    for basket in baskets:
+        total_quantity += basket.quantity
+        total_sum += basket.sum()
     context = {'title': 'Be Beloved - оформление заказа',
-               'baskets': Basket.objects.all()}
+               'baskets': baskets,
+               'total_quantity': total_quantity,
+               'total_sum': total_sum}
     return render(request, 'baskets/orders.html', context)
 
 
