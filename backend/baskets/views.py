@@ -4,7 +4,7 @@ from products.models import Product
 
 
 def orders(request):
-    context = {'title': 'By Beloved - оформление заказа',
+    context = {'title': 'Be Beloved - оформление заказа',
                'baskets': Basket.objects.all()}
     return render(request, 'baskets/orders.html', context)
 
