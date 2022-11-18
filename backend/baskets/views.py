@@ -5,7 +5,7 @@ from products.models import Product
 
 def basket(request):
     context = {'title': 'By Beloved - корзина',
-               'basket': Basket.objects.all()}
+               'baskets': Basket.objects.all()}
     return render(request, 'baskets/baskets.html', context)
 
 
