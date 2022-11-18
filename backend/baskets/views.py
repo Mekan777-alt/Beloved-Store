@@ -3,15 +3,10 @@ from .models import Basket
 from products.models import Product
 
 
-def basket(request):
-    context = {'title': 'By Beloved - корзина',
-               'baskets': Basket.objects.all()}
-    return render(request, 'baskets/baskets.html', context)
-
-
 def orders(request):
-    context = {'title': 'By Beloved - оформление заказа'}
-    return render(request, 'baskets/checkout_order.html', context)
+    context = {'title': 'By Beloved - оформление заказа',
+               'baskets': Basket.objects.all()}
+    return render(request, 'baskets/orders.html', context)
 
 
 def basket_add(request, product_id):
