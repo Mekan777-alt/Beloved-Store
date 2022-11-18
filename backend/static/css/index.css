@@ -1,9 +1,10 @@
-body {
-    background: url("../img/wallpaper.jpg") no-repeat center top fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+body{
+    background: url("../img/IMG_7348.JPG") no-repeat right fixed;
+    /*-webkit-background-size: cover;*/
+    background-color: #e2e2e0;
+    /*-moz-background-size: 100%;*/
+    /*background-size: 100%;*/
+    /*-o-background-size: 100%;*/
     padding-top: 56px;
 }
 
