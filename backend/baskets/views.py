@@ -3,7 +3,7 @@ from .models import Basket
 from products.models import Product
 
 
-def orders(request):
+def cart(request):
     baskets = Basket.objects.all()
     total_sum = sum(basket.sum() for basket in baskets)
     total_quantity = sum(basket.quantity for basket in baskets)
@@ -11,7 +11,11 @@ def orders(request):
                'baskets': baskets,
                'total_quantity': total_quantity,
                'total_sum': total_sum}
-    return render(request, 'baskets/orders.html', context)
+    return render(request, 'baskets/cart.html', context)
+
+
+def checkout(request):
+    return render(request, 'baskets/checkout.html')
 
 
 def basket_add(request, product_id):

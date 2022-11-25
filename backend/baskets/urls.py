@@ -1,9 +1,10 @@
 from django.urls import path
-from baskets.views import orders, basket_add
+from baskets.views import cart, basket_add, checkout
 
 app_name = 'basket_app'
 
 urlpatterns = [
-    path('', orders, name='orders'),
-    path('basket_add<int:product_id>/', basket_add, name='basket_add')
+    path('', cart, name='cart'),
+    path('basket_add<int:product_id>/', basket_add, name='basket_add'),
+    path('', checkout, name='checkout'),
 ]
