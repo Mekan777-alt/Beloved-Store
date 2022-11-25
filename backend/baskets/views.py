@@ -15,7 +15,14 @@ def cart(request):
 
 
 def checkout(request):
-    return render(request, 'baskets/checkout.html')
+    baskets = Basket.objects.all()
+    total_sum = sum(basket.sum() for basket in baskets)
+    total_quantity = sum(basket.quantity for basket in baskets)
+    context = {'title': 'Be Beloved - оформление заказа',
+               'baskets': baskets,
+               'total_quantity': total_quantity,
+               'total_sum': total_sum}
+    return render(request, 'baskets/checkout.html', context)
 
 
 def basket_add(request, product_id):
