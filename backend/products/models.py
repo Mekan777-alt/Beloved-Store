@@ -21,3 +21,5 @@ class Product(models.Model):
         return f'Продукт - {self.name}: Категория - {self.category}'
 
 
+
+

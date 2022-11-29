@@ -33,7 +33,7 @@
                     <div class="search-content">
                         <form action="#" method="get">
                             <input type="search" name="search" id="search" placeholder="Type your keyword...">
-                            <button type="submit"><img src="{% static 'img/core-img/search.png' %}" alt=""></button>
+                            <button type="submit"><img src="{% static '' %}img/core-img/search.png" alt=""></button>
                         </form>
                     </div>
                 </div>
@@ -47,10 +47,6 @@
 
         <!-- Mobile Nav (max width 767px)-->
         <div class="mobile-nav">
-            <!-- Navbar Brand -->
-            <div class="amado-navbar-brand">
-                <a href="index.html"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
-            </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
                 <span></span><span></span><span></span>
@@ -67,7 +63,7 @@
             <nav class="amado-nav">
                 <ul>
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li class="active"><a href="{% url 'products_app:shop' %}">Shop</a></li>
+                    <li><a href="{% url 'products_app:shop' %}">Shop</a></li>
                     <li><a href="{% url 'basket_app:cart' %}">Cart</a></li>
                 </ul>
             </nav>
@@ -81,47 +77,86 @@
         </header>
         <!-- Header Area End -->
 
-
-
-        <div class="amado_product_area section-padding-100">
+        <!-- Product Details Area Start -->
+        <div class="single-product-area section-padding-100 clearfix">
             <div class="container-fluid">
 
+
+
                 <div class="row">
-
-                    <!-- Single Product Area -->
-                    {% for product in products %}
-                        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="{{ product.image.url }}" alt="">
-                                    <!-- Hover Thumb -->
-                                  <img class="hover-img" src="{% static 'img/product-img/product2.jpg' %}" alt="">
-                                </div>
-
-                                <!-- Product Description -->
-                                <div class="product-description d-flex align-items-center justify-content-between">
-                                    <!-- Product Meta Data -->
-                                    <div class="product-meta-data">
-                                        <div class="line"></div>
-                                        <p class="product-price">{{ product.price }} руб.</p>
-                                        <a href="{% url 'products_app:details' product.id %}">
-                                            <h6>{{ product.name }}</h6>
+                    <div class="col-12 col-lg-7">
+                        <div class="single_product_thumb">
+                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({% static 'img/product-img/pro-big-1.jpg' %});">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url({% static 'img/product-img/pro-big-2.jpg' %});">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url({% static 'img/product-img/pro-big-3.jpg' %});">
+                                    </li>
+                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url({% static 'img/product-img/pro-big-4.jpg' %});">
+                                    </li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a class="gallery_img" href="{% static 'img/product-img/pro-big-1.jpg' %}">
+                                            <img class="d-block w-100" src="{% static 'img/product-img/pro-big-1.jpg' %}" alt="First slide">
                                         </a>
                                     </div>
-                                    <!-- Ratings & Cart -->
-                                    <div class="ratings-cart text-right">
-                                        <div class="cart">
-                                            <a href="{% url 'basket_app:basket_add' product.id %}" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="{% static 'img/core-img/cart.png' %}" alt=""></a>
-                                        </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" href="{% static 'img/product-img/pro-big-2.jpg' %}">
+                                            <img class="d-block w-100" src="{% static 'img/product-img/pro-big-2.jpg' %}" alt="Second slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" href="{% static 'img/product-img/pro-big-3.jpg' %}">
+                                            <img class="d-block w-100" src="{% static 'img/product-img/pro-big-3.jpg' %}" alt="Third slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" href="{% static 'img/product-img/pro-big-4.jpg' %}">
+                                            <img class="d-block w-100" src="{% static 'img/product-img/pro-big-4.jpg' %}" alt="Fourth slide">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <div class="single_product_desc">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p class="product-price">{{ product.price }}</p>
+                                <a href="product-details.html">
+                                    <h6>{{ product.name }}</h6>
+                                </a>
+                                <!-- Avaiable -->
+                                <p class="avaibility"><i class="fa fa-circle"></i> В наличии</p>
+                            </div>
+
+                            <div class="short_overview my-5">
+                                <p>{{ product.description }}</p>
+                            </div>
+                            <!-- Add to Cart Form -->
+                            <form class="cart clearfix" method="post">
+                                <div class="cart-btn d-flex mb-50">
+                                    <p>Qty</p>
+                                    <div class="quantity">
+                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Добавить в корзину</button>
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Product Details Area End -->
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
@@ -137,7 +172,7 @@
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
                 <!-- Single Widget Area -->

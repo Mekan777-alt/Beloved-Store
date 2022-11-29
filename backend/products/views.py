@@ -9,18 +9,19 @@ def index(request):
     return render(request, 'products/index.html', context)
 
 
-def products(request):
-    context = {'title': 'Be Beloved | Детали',
+def details(request, product_id):
+    product = Product.objects.get(id=product_id)
+    context = {'title': 'Be Beloved | Продукты',
                'products': Product.objects.all(),
                'category': ProductCategory.objects.all(),
+               'product': product,
                }
-    return render(request, 'products/product.html', context)
+    return render(request, 'products/product-details.html', context)
 
 
 def shop(request):
-    context = {'title': 'Be Beloved - Продукты',
+    context = {'title': 'Be Beloved | Продукты',
                'products': Product.objects.all(),
                'category': ProductCategory.objects.all(),
                }
     return render(request, 'products/shop.html', context)
-

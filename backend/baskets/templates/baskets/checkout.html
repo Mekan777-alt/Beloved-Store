@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | Checkout</title>
+    <title>{{ title }}</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
@@ -134,23 +134,18 @@
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
-                            <h5>Cart Total</h5>
+                            <h5>Всего</h5>
                             <ul class="summary-table">
-                                <li><span>:</span> <span>{{ total_sum }}</span></li>
-                                <li><span>Доставка:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span>{{ total_sum }}</span></li>
+                                <li><span>Сумма заказа:</span><span>{{ total_sum }}</span></li>
+                                <li><span>Доставка:</span> <span>Бесплатно</span></li>
+                                <li><span>Итого сумма:</span> <span>{{ total_sum }}</span></li>
                             </ul>
 
                             <div class="payment-method">
                                 <!-- Cash on delivery -->
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="cod" checked>
-                                    <label class="custom-control-label" for="cod">Cash on Delivery</label>
-                                </div>
-                                <!-- Paypal -->
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="paypal">
-                                    <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="img/core-img/paypal.png" alt=""></label>
+                                    <label class="custom-control-label" for="cod">Оплата при доставке</label>
                                 </div>
                             </div>
 
