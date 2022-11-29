@@ -21,5 +21,9 @@ class Product(models.Model):
         return f'Продукт - {self.name}: Категория - {self.category}'
 
 
+class ProductImage(models.Model):
+    image = models.ImageField(upload_to='products_image', blank=True, null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
-
+    def __str__(self):
+        return self.product.name
