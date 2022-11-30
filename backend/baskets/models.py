@@ -8,7 +8,7 @@ class Basket(models.Model):
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.product
+        return self.product.name
 
     def sum(self):
         return self.quantity * self.product.price

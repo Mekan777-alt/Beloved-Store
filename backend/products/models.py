@@ -12,6 +12,10 @@ class ProductCategory(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=256)
     image = models.ImageField(upload_to='products_images', blank=True, null=True)
+    image_static_shop = models.ImageField(upload_to='products_image', null=True, blank=True)
+    image_static1 = models.ImageField(upload_to='products_image', null=True, blank=True)
+    image_static2 = models.ImageField(upload_to='products_image', null=True, blank=True)
+    image_static3 = models.ImageField(upload_to='products_image', null=True, blank=True)
     description = models.CharField(max_length=400)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField(default=0)
@@ -21,9 +25,3 @@ class Product(models.Model):
         return f'Продукт - {self.name}: Категория - {self.category}'
 
 
-class ProductImage(models.Model):
-    image = models.ImageField(upload_to='products_image', blank=True, null=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.product.name
