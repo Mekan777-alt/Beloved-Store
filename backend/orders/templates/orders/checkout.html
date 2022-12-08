@@ -98,20 +98,6 @@
                                     <div class="col-12 mb-3">
                                         <input type="email" class="form-control" id="email" placeholder="Электронная почта" value="">
                                     </div>
-<!--                                    <div class="col-12 mb-3">-->
-<!--                                        <select class="w-100" id="country">-->
-<!--                                        <option value="co">Страна</option>-->
-<!--                                        <option value="ru">Россия</option>-->
-<!--                                        <option value="usa">Соединеные штаты</option>-->
-<!--                                        <option value="uk">Великобритание</option>-->
-<!--                                        <option value="ger">Германия</option>-->
-<!--                                        <option value="fra">Франция</option>-->
-<!--                                        <option value="ind">Индия</option>-->
-<!--                                        <option value="aus">Австралия</option>-->
-<!--                                        <option value="bra">Бразилия</option>-->
-<!--                                        <option value="cana">Канада</option>-->
-<!--                                    </select>-->
-<!--                                    </div>-->
                                     <div class="col-12 mb-3">
                                         <input type="text" class="form-control mb-3" id="street_address" placeholder="Адрес" value="">
                                     </div>
@@ -150,7 +136,7 @@
                             </div>
 
                             <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100">Оформить заказ</a>
+                                <a href="{% url 'index' %}" class="btn amado-btn w-100">Оформить заказ</a>
                             </div>
                         </div>
                     </div>
