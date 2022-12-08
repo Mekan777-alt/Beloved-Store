@@ -47,10 +47,10 @@
 
         <!-- Mobile Nav (max width 767px)-->
         <div class="mobile-nav">
-            <!-- Navbar Brand -->
-            <div class="amado-navbar-brand">
-                <a href="index.html"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
-            </div>
+<!--            &lt;!&ndash; Navbar Brand &ndash;&gt;-->
+<!--            <div class="amado-navbar-brand">-->
+<!--                <a href="index.html"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>-->
+<!--            </div>-->
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
                 <span></span><span></span><span></span>
@@ -104,10 +104,10 @@
                                     <!-- Product Meta Data -->
                                     <div class="product-meta-data">
                                         <div class="line"></div>
-                                        <p class="product-price">{{ product.price }} руб.</p>
                                         <a href="{% url 'products_app:details' product.id %}">
-                                            <h6>{{ product.name }}</h6>
+                                            <p class="product-price">{{ product.name }}</p>
                                         </a>
+                                        <h6>{{ product.price }} руб.</h6>
                                     </div>
                                     <!-- Ratings & Cart -->
                                     <div class="ratings-cart text-right">

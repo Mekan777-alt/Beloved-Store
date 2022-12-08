@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class Orders(models.Model):
+    pass
+    # name = models.Charfield()
+    # lastname =
+    # email =
+    # address =
+    # index =
+    # phone_number =
+    # comment =

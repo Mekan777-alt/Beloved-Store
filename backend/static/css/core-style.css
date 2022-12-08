@@ -800,7 +800,7 @@ img {
           font-size: 14px;
           text-transform: uppercase; }
           .main-content-wrapper .single-product-area .breadcrumb .breadcrumb-item a:hover {
-            color: #fbb710; }
+            color: red; }
       .main-content-wrapper .single-product-area .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
         content: ">"; }
     .main-content-wrapper .single-product-area .single_product_thumb {
