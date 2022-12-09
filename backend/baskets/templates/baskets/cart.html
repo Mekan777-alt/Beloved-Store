@@ -67,6 +67,13 @@
                     <li class="active"><a href="{% url 'basket_app:cart' %}">Cart</a></li>
                 </ul>
             </nav>
+
+            <div class="cart-fav-search mb-100">
+                <a href="{% url 'basket_app:cart' %}" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>{{ baskets.0.total_quantity }}</span></a>
+                <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a>
+                <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
+            </div>
+
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
                 <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>

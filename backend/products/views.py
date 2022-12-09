@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product, ProductCategory
+from baskets.models import Basket
 
 
 def index(request):
@@ -23,5 +24,6 @@ def shop(request):
     context = {'title': 'Be Beloved | Продукты',
                'products': Product.objects.all(),
                'category': ProductCategory.objects.all(),
+               'baskets': Basket.objects.all()
                }
     return render(request, 'products/shop.html', context)

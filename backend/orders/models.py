@@ -6,6 +6,7 @@ class Orders(models.Model):
     lastname = models.CharField(max_length=50)
     email = models.TextField()
     address = models.TextField()
+    city = models.CharField(max_length=50)
     index = models.PositiveIntegerField(default=0)
     phone_number = models.CharField(max_length=20)
     comment = models.TextField()
