@@ -94,7 +94,7 @@
                                 <h2>Оформление заказа</h2>
                             </div>
 
-                            <form action="#" method="post">{% csrf_token %}
+                            <form action="{% url 'basket_app:checkout' %}" method="post">{% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <input type="text" class="form-control" id="first_name" value="" placeholder="Имя" required>
@@ -129,9 +129,9 @@
                         <div class="cart-summary">
                             <h5>Всего</h5>
                             <ul class="summary-table">
-                                <li><span>Сумма заказа:</span><span>{{ total_sum }}</span></li>
+                                <li><span>Сумма заказа:</span><span>{{ total_sum }} руб.</span></li>
                                 <li><span>Доставка:</span> <span>Бесплатно</span></li>
-                                <li><span>Итого сумма:</span> <span>{{ total_sum }}</span></li>
+                                <li><span>Итого сумма:</span> <span>{{ total_sum }} руб.</span></li>
                             </ul>
 
                             <div class="payment-method">
