@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    {% if baskets %}
     <!-- Header Area End -->
 
         <div class="cart-table-area section-padding-100">
@@ -69,4 +70,9 @@
                 </div>
             </div>
         </div>
+    {% else %}
+        <div class="cart-title mt-50">
+            <h2>Корзина пуста</h2>
+        </div>
+    {% endif %}
 {% endblock %}
