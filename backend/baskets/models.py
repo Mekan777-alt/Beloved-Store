@@ -27,6 +27,7 @@ class Orders(models.Model):
     index = models.PositiveIntegerField(default=0)
     phone_number = models.CharField(max_length=20)
     comment = models.TextField()
+    basket_id = models.ForeignKey(Basket, on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'Заказы'

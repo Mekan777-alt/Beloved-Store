@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Product, ProductCategory
 from baskets.models import Basket
@@ -27,3 +28,18 @@ def shop(request):
                'baskets': Basket.objects.all()
                }
     return render(request, 'products/shop.html', context)
+
+
+def basket_add(request, product_id):
+    product = Product.objects.get(id=product_id)
+    baskets = Basket.objects.filter(product=product)
+
+    if not baskets:
+        Basket.objects.create(product=product, quantity=1)
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    else:
+        basket = baskets.first()
+        basket.quantity += 1
+        basket.save()
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
