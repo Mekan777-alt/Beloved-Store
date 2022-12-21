@@ -1,8 +1,8 @@
 from django.http import JsonResponse
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.template.loader import render_to_string
 from .forms import OrdersForms
-from .models import Basket
+from .models import Basket, Orders
 from products.models import Product
 from django.contrib import messages
 from django.urls import reverse
@@ -21,13 +21,16 @@ def cart(request):
 
 def checkout(request):
     baskets = Basket.objects.all()
-    if request.method == 'GET':
-        forms = OrdersForms(data=request.POST)
+    if request.method == 'POST':
+        forms = OrdersForms(request.POST)
         if forms.is_valid():
-            forms.save()
-            messages.success(request, 'Заказ оформлен!\n'
-                                      'Менеджер созвонится с вами')
-            return HttpResponseRedirect(reverse('index'))
+            try:
+                forms.save()
+                messages.success(request, 'Заказ оформлен!\n'
+                                          'Менеджер созвонится с вами')
+                # return redirect('index')
+            except:
+                forms.add_error(None, 'Ошибка добавление')
     else:
         forms = OrdersForms()
     context = {'title': 'Be Beloved - оформление заказа',
