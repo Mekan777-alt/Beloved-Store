@@ -15,28 +15,28 @@
                         <form action="{% url 'basket_app:checkout' %}" method="post">{% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" id="first_name" value="" placeholder="Имя" required>
+                                    {{ form.name }}
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" id="last_name" value="" placeholder="Фамилия" required>
+                                    {{ form.lastname }}
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="email" class="form-control" id="email" placeholder="Электронная почта" value="">
+                                    {{ form.email }}
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control mb-3" id="street_address" placeholder="Адрес" value="">
+                                    {{ form.address }}
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input type="text" class="form-control" id="city" placeholder="Город" value="">
+                                    {{ form.city }}
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" id="zipCode" placeholder="Индекс" value="">
+                                    {{ form.index }}
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="number" class="form-control" id="phone_number" min="0" placeholder="Телефон номер" value="">
+                                    {{ form.phone_number }}
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" placeholder="Оставьте комментарий к вашему заказу"></textarea>
+                                    {{ form.comment }}
                                 </div>
 
                             </div>
@@ -47,9 +47,9 @@
                     <div class="cart-summary">
                         <h5>Всего</h5>
                         <ul class="summary-table">
-                            <li><span>Сумма заказа:</span><span>{{ total_sum }} руб.</span></li>
+                            <li><span>Сумма заказа:</span><span>{{ baskets.0.total_sum }} руб.</span></li>
                             <li><span>Доставка:</span> <span>Бесплатно</span></li>
-                            <li><span>Итого сумма:</span> <span>{{ total_sum }} руб.</span></li>
+                            <li><span>Итого сумма:</span> <span>{{ baskets.0.total_sum }} руб.</span></li>
                         </ul>
                         <div class="payment-method">
                             <!-- Cash on delivery -->

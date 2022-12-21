@@ -1,6 +1,7 @@
 {% extends 'products/base.html' %}
 {% load static %}
 
+<div class="basket_list">
 {% block content %}
     {% if baskets %}
     <!-- Header Area End -->
@@ -40,7 +41,7 @@
                                                     <p>Qty</p>
                                                     <div class="quantity">
                                                         <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="{{ basket.quantity }}">
+                                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="{{ basket.id }}" value="{{ basket.quantity }}">
                                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                     </div>
                                                 </div>
@@ -58,9 +59,9 @@
                         <div class="cart-summary">
                             <h5>Всего</h5>
                             <ul class="summary-table">
-                                <li><span>Сумма заказа:</span> <span>{{ total_sum }} руб.</span></li>
+                                <li><span>Сумма заказа:</span> <span>{{ baskets.0.sum }} руб.</span></li>
                                 <li><span>Доставка:</span> <span>Бесплатно</span></li>
-                                <li><span>Итого сумма:</span> <span>{{ total_sum }} руб.</span></li>
+                                <li><span>Итого сумма:</span> <span>{{ baskets.0.total_sum }} руб.</span></li>
                             </ul>
                             <div class="cart-btn mt-100">
                                 <a href="{% url 'basket_app:checkout' %}" class="btn amado-btn w-100">Оформить заказ</a>
@@ -75,4 +76,10 @@
             <h2>Корзина пуста</h2>
         </div>
     {% endif %}
+{% endblock %}
+
+</div>
+
+{% block js %}
+    <script src="{% static 'js/basket.js' %}"></script>
 {% endblock %}

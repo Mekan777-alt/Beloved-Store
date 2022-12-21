@@ -4,6 +4,8 @@ from django.template.loader import render_to_string
 from .forms import OrdersForms
 from .models import Basket
 from products.models import Product
+from django.contrib import messages
+from django.urls import reverse
 
 
 def cart(request):
@@ -18,15 +20,19 @@ def cart(request):
 
 
 def checkout(request):
-    form = OrdersForms()
     baskets = Basket.objects.all()
-    total_sum = sum(basket.sum() for basket in baskets)
-    total_quantity = sum(basket.quantity for basket in baskets)
+    if request.method == 'GET':
+        forms = OrdersForms(data=request.POST)
+        if forms.is_valid():
+            forms.save()
+            messages.success(request, 'Заказ оформлен!\n'
+                                      'Менеджер созвонится с вами')
+            return HttpResponseRedirect(reverse('index'))
+    else:
+        forms = OrdersForms()
     context = {'title': 'Be Beloved - оформление заказа',
                'baskets': baskets,
-               'total_quantity': total_quantity,
-               'total_sum': total_sum,
-               'form': form}
+               'form': forms}
     return render(request, 'baskets/checkout.html', context)
 
 

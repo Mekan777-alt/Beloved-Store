@@ -17,6 +17,10 @@ class Basket(models.Model):
         baskets = Basket.objects.all()
         return sum(basket.quantity for basket in baskets)
 
+    def total_sum(self):
+        baskets = Basket.objects.all()
+        return sum(basket.sum() for basket in baskets)
+
 
 class Orders(models.Model):
     name = models.CharField(max_length=50)
