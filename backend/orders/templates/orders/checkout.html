@@ -12,13 +12,35 @@
                             <h2>Оформление заказа</h2>
                         </div>
 
-                        <form action="{% url 'basket_app:checkout' %}" method="post">{% csrf_token %}
+                        <form action="{% url 'order_app:checkout' %}" method="post">{% csrf_token %}
                             <div class="row">
-                                {% for f in form %}
                                 <div class="col-md-6 mb-3">
-                                    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}</label>{{ f }}</p>
+                                    {{ form.name }}
                                 </div>
-                                {% endfor %}
+                                <div class="col-md-6 mb-3">
+                                    {{ form.lastname }}
+                                </div>
+                                <div class="col-12 mb-3">
+                                    {{ form.email }}
+                                </div>
+                                <div class="col-12 mb-3">
+                                    {{ form.address }}
+                                </div>
+                                <div class="col-12 mb-3">
+                                    {{ form.city }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.index }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.phone_number }}
+                                </div>
+                                <div class="col-12 mb-3">
+                                    {{ form.comment }}
+                                </div>
+                            </div>
+                            <div class="cart-btn mt-100">
+                                <a href="#" class="btn amado-btn w-100">Оформить заказ</a>
                             </div>
                         </form>
                     </div>
@@ -27,9 +49,9 @@
                     <div class="cart-summary">
                         <h5>Всего</h5>
                         <ul class="summary-table">
-                            <li><span>Сумма заказа:</span><span>{{ baskets.0.total_sum }} руб.</span></li>
+                            <li><span>Сумма заказа:</span> <span>{{ total_sum }} руб.</span></li>
                             <li><span>Доставка:</span> <span>Бесплатно</span></li>
-                            <li><span>Итого сумма:</span> <span>{{ baskets.0.total_sum }} руб.</span></li>
+                            <li><span>Итого сумма:</span> <span>{{ total_sum }} руб.</span></li>
                         </ul>
                         <div class="payment-method">
                             <!-- Cash on delivery -->
@@ -37,9 +59,6 @@
                                 <input type="checkbox" class="custom-control-input" id="cod" checked>
                                 <label class="custom-control-label" for="cod">Оплата при доставке</label>
                             </div>
-                        </div>
-                        <div class="cart-btn mt-100">
-                            <a href="#" class="btn amado-btn w-100">Оформить заказ</a>
                         </div>
                     </div>
                 </div>
