@@ -1,10 +1,8 @@
 from django.http import JsonResponse
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect
 from django.template.loader import render_to_string
 from .models import Basket
 from products.models import Product
-from django.contrib import messages
-from django.urls import reverse
 
 
 def cart(request):

@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from baskets.models import Basket
-from .models import OrderItem
-from .forms import OrdersForms
+from order.forms import OrdersForms
 
 
 def checkout(request):
@@ -23,13 +22,8 @@ def order_create(request):
         form = OrdersForms(request.POST)
         if form.is_valid():
             order = form.save()
-            for item in basket:
-                OrderItem.objects.create(order=order,
-                                         product=item['product_name'],
-                                         price=item['price'],
-                                         quantity=item['price'])
             basket.delete()
-            return render(request, 'orders/checkout.html', {'order': order})
+            return render(request, 'orders/created.html', {'order': order})
     else:
         form = OrdersForms()
     return render(request, 'orders/checkout.html', {'basket': basket, 'form': form})

@@ -12,7 +12,7 @@
                             <h2>Оформление заказа</h2>
                         </div>
 
-                        <form action="{% url 'order_app:checkout' %}" method="post">{% csrf_token %}
+                        <form action="{% url 'order_app:create' %}" method="post">{% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     {{ form.name }}
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="cart-btn mt-100">
-                                <a href="#" class="btn amado-btn w-100">Оформить заказ</a>
+                                <a href="{% url 'order_app:create' %}"><input type="submit" class="btn amado-btn w-100">Оформить заказ</a>
                             </div>
                         </form>
                     </div>
