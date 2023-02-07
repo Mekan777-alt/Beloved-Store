@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from products.views import index
@@ -24,7 +25,8 @@ urlpatterns = [
     path('', index, name='index'),
     path('cart/', include('baskets.urls', namespace='cart')),
     path('shop/', include('products.urls', namespace='details')),
-    path('order/', include('order.urls', namespace='order'))
+    path('order/', include('order.urls', namespace='order')),
+    # url(r'^cart/', include('baskets.urls', namespace='cart')),
 ]
 
 if settings.DEBUG:

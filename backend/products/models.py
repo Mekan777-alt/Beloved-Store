@@ -3,9 +3,10 @@ from django.db import models
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    description = models.TextField(blank=True, null=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
     class Meta:
+        ordering = ('name',)
         verbose_name = 'Категория продуктов'
         verbose_name_plural = 'Категория продуктов'
 
@@ -15,6 +16,7 @@ class ProductCategory(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=256)
+    slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='products_images', blank=True, null=True)
     image_static_shop = models.ImageField(upload_to='products_image', null=True, blank=True)
     image_static1 = models.ImageField(upload_to='products_image', null=True, blank=True)
@@ -26,6 +28,8 @@ class Product(models.Model):
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
 
     class Meta:
+        ordering = ('name',)
+        index_together = (('id', 'slug'),)
         verbose_name = 'Продукты'
         verbose_name_plural = 'Продукты'
 

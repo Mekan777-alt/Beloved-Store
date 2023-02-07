@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="cart-btn mt-100">
-                                <a href="{% url 'order_app:create' %}"><input type="submit" class="btn amado-btn w-100">Оформить заказ</a>
+                                <a href="{% url 'order_app:create' %}"><input type="submit" class="btn amado-btn w-100"></a>
                             </div>
                         </form>
                     </div>
@@ -49,9 +49,9 @@
                     <div class="cart-summary">
                         <h5>Всего</h5>
                         <ul class="summary-table">
-                            <li><span>Сумма заказа:</span> <span>{{ total_sum }} руб.</span></li>
+                            <li><span>Сумма заказа:</span> <span>{{ cart.get_total_price }} руб.</span></li>
                             <li><span>Доставка:</span> <span>Бесплатно</span></li>
-                            <li><span>Итого сумма:</span> <span>{{ total_sum }} руб.</span></li>
+                            <li><span>Итого сумма:</span> <span>{{ cart.get_total_price }} руб.</span></li>
                         </ul>
                         <div class="payment-method">
                             <!-- Cash on delivery -->

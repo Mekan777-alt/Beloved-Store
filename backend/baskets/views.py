@@ -1,50 +1,29 @@
-from django.http import JsonResponse
-from django.shortcuts import render, HttpResponseRedirect
-from django.template.loader import render_to_string
-from .models import Basket
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 from products.models import Product
+from .cart import Cart
+from .forms import CartAddProductForm
 
 
-def cart(request):
-    baskets = Basket.objects.all()
-    total_sum = sum(basket.sum() for basket in baskets)
-    total_quantity = sum(basket.quantity for basket in baskets)
-    context = {'title': 'Be Beloved - оформление заказа',
-               'baskets': baskets,
-               'total_quantity': total_quantity,
-               'total_sum': total_sum}
-    return render(request, 'baskets/cart.html', context)
-
-
-def basket_add(request, product_id):
+@require_POST
+def cart_add(request, product_id):
+    cart = Cart(request)
     product = Product.objects.get(id=product_id)
-    baskets = Basket.objects.filter(product=product)
-
-    if not baskets:
-        Basket.objects.create(product=product, quantity=1)
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
-    else:
-        basket = baskets.first()
-        basket.quantity += 1
-        basket.save()
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    form = CartAddProductForm(request.POST)
+    if form.is_valid():
+        cd = form.cleaned_data
+        cart.add(product=product,
+                 quantity=cd['quantity'],
+                 update_quantity=cd['update'])
+    return redirect('basket_app:cart')
 
 
-def basket_remove(request):
-    basket = Basket.objects.all()
-    basket.delete()
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+def cart_remove(request):
+    cart = Cart(request)
+    cart.remove()
+    return redirect('basket_app:cart')
 
 
-def basket_edit(request, id, quantity):
-    if request.is_ajax():
-        basket = Basket.objects.get(id=id)
-        if quantity > 0:
-            basket.quantity = quantity
-            basket.save()
-        else:
-            basket.delete()
-        baskets = Basket.objects.filter(user=request.user)
-        context = {'baskets': baskets}
-        result = render_to_string('baskets/cart.html', context)
-        return JsonResponse({'result': result})
+def cart_detail(request):
+    cart = Cart(request)
+    return render(request, 'baskets/cart.html', {'cart': cart})

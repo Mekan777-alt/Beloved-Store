@@ -1,11 +1,11 @@
-from django.urls import path
-from baskets.views import cart, basket_add, basket_remove, basket_edit
+from django.conf.urls import url
+from . import views
 
 app_name = 'basket_app'
 
+
 urlpatterns = [
-    path('', cart, name='cart'),
-    path('basket-add/<int:product_id>/', basket_add, name='basket_add'),
-    path('basket-edit/<int:id>/<int:quantity>/', basket_edit, name='basket_edit'),
-    path('basket-remove/', basket_remove, name='basket_remove'),
+    url(r'^$', views.cart_detail, name='cart'),
+    url(r'^add/(?P<product_id>\d+)/$', views.cart_add, name='basket_add'),
+    url(r'^remove/', views.cart_remove, name='basket_remove'),
 ]
