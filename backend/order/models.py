@@ -1,5 +1,6 @@
 from django.db import models
 from baskets.models import Basket
+from products.models import Product
 
 
 class Orders(models.Model):
@@ -20,17 +21,21 @@ class Orders(models.Model):
         verbose_name_plural = 'Заказы'
 
     def __str__(self):
-        return f'{self.name} - {self.lastname}'
+        return 'Order {}'.format(self.id)
+
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
 
 
 class OrderItem(models.Model):
-    order_name = models.CharField(max_length=250)
-    order_pn = models.CharField(max_length=20)
-    order_eaddress = models.TextField(default=0)
-    order_address = models.TextField()
-    product_name = models.CharField(max_length=400)
-    quantity = models.PositiveIntegerField(default=0)
+    order = models.ForeignKey(Orders, related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='order_items', on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f'{self.order_name} - {self.product_name}'
+        return '{}'.format(self.id)
+
+    def get_cost(self):
+        return self.price * self.quantity
 
