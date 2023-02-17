@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os.path
 from pathlib import Path
-from secret import SECRET_KEY
+from secret import SECRET_KEY, host_user, password_user
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -130,6 +130,12 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CART_SESSION_ID = 'cart'
+
+EMAIL_HOST = 'smtp.yandex.com'
+EMAIL_HOST_USER = host_user
+EMAIL_HOST_PASSWORD = password_user
+EMAIL_PORT = 465
+EMAIL_USE_TLS
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
